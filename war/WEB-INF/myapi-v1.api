@@ -1,0 +1,184 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://kumo2ji-1043.appspot.com/_ah/api",
+  "name" : "myapi",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://kumo2ji-1043.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "myapi.animeInfoApi.getAllAnimeInfoBeans" : {
+      "path" : "all",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAllAnimeInfoBeans",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "myapi.animeInfoApi.storeFromExternalAnimeInfo" : {
+      "path" : "storeFromExternalAnimeInfo",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.storeFromExternalAnimeInfo",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "myapi.animeInfoApi.getAnimeInfoBeans" : {
+      "path" : "animeinfobeancollection",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "myapi.animeInfoApi.storeCurrentAnimeInfo" : {
+      "path" : "storeCurrentAnimeInfo",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.storeCurrentAnimeInfo",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "AnimeInfoBean" : {
+        "id" : "AnimeInfoBean",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "shortTitles" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "publicUrl" : {
+            "type" : "string"
+          },
+          "twitterAccount" : {
+            "type" : "string"
+          },
+          "twitterHashTag" : {
+            "type" : "string"
+          },
+          "coursId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "sex" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "sequel" : {
+            "type" : "string",
+            "format" : "int64"
+          }
+        }
+      },
+      "AnimeInfoBeanCollection" : {
+        "id" : "AnimeInfoBeanCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "AnimeInfoBean"
+            }
+          }
+        }
+      },
+      "CoursBean" : {
+        "id" : "CoursBean",
+        "type" : "object",
+        "properties" : {
+          "year" : {
+            "type" : "integer"
+          },
+          "cours" : {
+            "type" : "integer"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.km2j.server.api.AnimeInfoApi.getAllAnimeInfoBeans" : {
+        "response" : {
+          "$ref" : "AnimeInfoBeanCollection"
+        }
+      },
+      "com.km2j.server.api.AnimeInfoApi.storeFromExternalAnimeInfo" : {
+      },
+      "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans" : {
+        "request" : {
+          "$ref" : "CoursBean"
+        },
+        "response" : {
+          "$ref" : "AnimeInfoBeanCollection"
+        }
+      },
+      "com.km2j.server.api.AnimeInfoApi.storeCurrentAnimeInfo" : {
+      }
+    }
+  }
+}

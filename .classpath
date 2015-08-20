@@ -9,5 +9,11 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-collections4-4.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/appengine-testing/appengine-api-stubs-1.9.25.jar"/>
+	<classpathentry kind="lib" path="lib/appengine-testing/appengine-testing-1.9.25.jar"/>
+	<classpathentry kind="lib" path="lib/appengine-testing/appengine-tools-api.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
