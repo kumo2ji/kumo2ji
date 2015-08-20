@@ -36,14 +36,14 @@ public class AnimeInfoApi {
         final String cours = String.valueOf(coursObject.getCours());
         list.addAll(ExternalAnimeInfoUtils.requestAnimeBaseObjects(year, cours));
       }
-      DatastoreUtils.putAnimeBaseObjects(list);
+      DatastoreUtils.putAnimeBaseObjects(list, coursMap);
     } catch (final IOException e) {
       throw new InternalServerErrorException(e);
     }
   }
 
   @ApiMethod
-  public void storeCurrentAnimeInfo() throws InternalServerErrorException {
+  public void updateCurrentAnimeInfo() throws InternalServerErrorException {
     try {
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
       final Collection<CoursObject> coursObjects = coursMap.values();
@@ -55,8 +55,8 @@ public class AnimeInfoApi {
       });
       final String year = String.valueOf(current.getYear());
       final String cours = String.valueOf(current.getCours());
-      DatastoreUtils
-          .putAnimeBaseObjects(ExternalAnimeInfoUtils.requestAnimeBaseObjects(year, cours));
+      DatastoreUtils.putAnimeBaseObjects(
+          ExternalAnimeInfoUtils.requestAnimeBaseObjects(year, cours), coursMap);
     } catch (final IOException e) {
       throw new InternalServerErrorException(e);
     }
@@ -66,7 +66,7 @@ public class AnimeInfoApi {
   public Collection<AnimeInfoBean> getAllAnimeInfoBeans() {
     final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeBaseObjects();
     return CollectionUtils.collect(preparedQuery.asIterable(),
-        animeEntityInfo.getEntityToAnimeInfoBean());
+        animeEntityInfo.getEntityToAnimeInfoBeanTransformer());
   }
 
   @ApiMethod

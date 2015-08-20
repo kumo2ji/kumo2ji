@@ -2,7 +2,6 @@ package com.km2j.shared;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 
 public class AnimeInfoBean implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -13,9 +12,8 @@ public class AnimeInfoBean implements Serializable {
   private String publicUrl;
   private String twitterAccount;
   private String twitterHashTag;
-  private long coursId;
-  private Date createdAt;
-  private Date updatedAt;
+  private long year;
+  private long cours;
   private long sex;
   private long sequel;
 
@@ -67,28 +65,20 @@ public class AnimeInfoBean implements Serializable {
     this.twitterHashTag = twitterHashTag;
   }
 
-  public final long getCoursId() {
-    return coursId;
+  public long getYear() {
+    return year;
   }
 
-  public final void setCoursId(final long coursId) {
-    this.coursId = coursId;
+  public void setYear(final long year) {
+    this.year = year;
   }
 
-  public final Date getCreatedAt() {
-    return createdAt;
+  public long getCours() {
+    return cours;
   }
 
-  public final void setCreatedAt(final Date createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public final Date getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public final void setUpdatedAt(final Date updatedAt) {
-    this.updatedAt = updatedAt;
+  public void setCours(final long cours) {
+    this.cours = cours;
   }
 
   public final long getSex() {

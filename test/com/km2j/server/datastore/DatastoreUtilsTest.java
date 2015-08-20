@@ -8,6 +8,7 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
@@ -22,6 +23,7 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.km2j.server.Utils;
 import com.km2j.server.external.AnimeBaseObject;
+import com.km2j.server.external.CoursObject;
 import com.km2j.server.external.ExternalAnimeInfoUtils;
 import com.km2j.shared.BiFunc;
 
@@ -44,7 +46,8 @@ public class DatastoreUtilsTest {
     try {
       final Collection<AnimeBaseObject> baseList =
           ExternalAnimeInfoUtils.requestAnimeBaseObjects("2014", "2");
-      final List<Key> keyList = DatastoreUtils.putAnimeBaseObjects(baseList);
+      final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
+      final List<Key> keyList = DatastoreUtils.putAnimeBaseObjects(baseList, coursMap);
       assertTrue(!keyList.isEmpty());
       final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeBaseObjects();
       assertThat(baseList.size(),

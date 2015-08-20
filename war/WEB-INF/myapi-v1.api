@@ -24,16 +24,17 @@
     "maxAge" : 0
   },
   "methods" : {
-    "myapi.animeInfoApi.getAllAnimeInfoBeans" : {
-      "path" : "all",
+    "myapi.animeInfoApi.getAnimeInfoBeans" : {
+      "path" : "animeinfobeancollection",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAllAnimeInfoBeans",
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans",
       "request" : {
-        "body" : "empty"
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -54,30 +55,29 @@
         "body" : "empty"
       }
     },
-    "myapi.animeInfoApi.getAnimeInfoBeans" : {
-      "path" : "animeinfobeancollection",
+    "myapi.animeInfoApi.getAllAnimeInfoBeans" : {
+      "path" : "all",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans",
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAllAnimeInfoBeans",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "myapi.animeInfoApi.storeCurrentAnimeInfo" : {
-      "path" : "storeCurrentAnimeInfo",
-      "httpMethod" : "POST",
+    "myapi.animeInfoApi.updateCurrentAnimeInfo" : {
+      "path" : "void",
+      "httpMethod" : "PUT",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.storeCurrentAnimeInfo",
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.updateCurrentAnimeInfo",
       "request" : {
         "body" : "empty"
       },
@@ -88,6 +88,18 @@
   },
   "descriptor" : {
     "schemas" : {
+      "CoursBean" : {
+        "id" : "CoursBean",
+        "type" : "object",
+        "properties" : {
+          "year" : {
+            "type" : "integer"
+          },
+          "cours" : {
+            "type" : "integer"
+          }
+        }
+      },
       "AnimeInfoBean" : {
         "id" : "AnimeInfoBean",
         "type" : "object",
@@ -114,17 +126,13 @@
           "twitterHashTag" : {
             "type" : "string"
           },
-          "coursId" : {
+          "year" : {
             "type" : "string",
             "format" : "int64"
           },
-          "createdAt" : {
+          "cours" : {
             "type" : "string",
-            "format" : "date-time"
-          },
-          "updatedAt" : {
-            "type" : "string",
-            "format" : "date-time"
+            "format" : "int64"
           },
           "sex" : {
             "type" : "string",
@@ -147,28 +155,9 @@
             }
           }
         }
-      },
-      "CoursBean" : {
-        "id" : "CoursBean",
-        "type" : "object",
-        "properties" : {
-          "year" : {
-            "type" : "integer"
-          },
-          "cours" : {
-            "type" : "integer"
-          }
-        }
       }
     },
     "methods" : {
-      "com.km2j.server.api.AnimeInfoApi.getAllAnimeInfoBeans" : {
-        "response" : {
-          "$ref" : "AnimeInfoBeanCollection"
-        }
-      },
-      "com.km2j.server.api.AnimeInfoApi.storeFromExternalAnimeInfo" : {
-      },
       "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans" : {
         "request" : {
           "$ref" : "CoursBean"
@@ -177,7 +166,14 @@
           "$ref" : "AnimeInfoBeanCollection"
         }
       },
-      "com.km2j.server.api.AnimeInfoApi.storeCurrentAnimeInfo" : {
+      "com.km2j.server.api.AnimeInfoApi.storeFromExternalAnimeInfo" : {
+      },
+      "com.km2j.server.api.AnimeInfoApi.getAllAnimeInfoBeans" : {
+        "response" : {
+          "$ref" : "AnimeInfoBeanCollection"
+        }
+      },
+      "com.km2j.server.api.AnimeInfoApi.updateCurrentAnimeInfo" : {
       }
     }
   }
