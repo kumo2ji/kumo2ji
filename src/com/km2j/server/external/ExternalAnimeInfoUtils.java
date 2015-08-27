@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.Map;
 
+import com.km2j.shared.CoursObject;
+
 public class ExternalAnimeInfoUtils {
   private static final ExternalAnimeInfo server = new ExternalAnimeInfo();
 

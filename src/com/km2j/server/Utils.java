@@ -69,4 +69,13 @@ public final class Utils {
       }
     });
   }
+
+  public static <T> boolean contains(final Iterable<T> collection, final Predicate<T> predicate) {
+    for (final T value : collection) {
+      if (predicate.evaluate(value)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

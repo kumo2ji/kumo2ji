@@ -23,9 +23,9 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.km2j.server.Utils;
 import com.km2j.server.external.AnimeBaseObject;
-import com.km2j.server.external.CoursObject;
 import com.km2j.server.external.ExternalAnimeInfoUtils;
 import com.km2j.shared.BiFunc;
+import com.km2j.shared.CoursObject;
 
 public class DatastoreUtilsTest {
   private static final LocalServiceTestHelper helper =

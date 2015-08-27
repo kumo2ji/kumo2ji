@@ -24,17 +24,16 @@
     "maxAge" : 0
   },
   "methods" : {
-    "myapi.animeInfoApi.getAnimeInfoBeans" : {
-      "path" : "animeinfobeancollection",
+    "myapi.animeInfoApi.getCoursObjects" : {
+      "path" : "coursobjectcollection",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans",
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getCoursObjects",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -84,19 +83,53 @@
       "response" : {
         "body" : "empty"
       }
+    },
+    "myapi.animeInfoApi.getAnimeInfoBeans" : {
+      "path" : "animeinfobeancollection",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
     }
   },
   "descriptor" : {
     "schemas" : {
-      "CoursBean" : {
-        "id" : "CoursBean",
+      "CoursObject" : {
+        "id" : "CoursObject",
         "type" : "object",
         "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
           "year" : {
-            "type" : "integer"
+            "type" : "string",
+            "format" : "int64"
           },
           "cours" : {
-            "type" : "integer"
+            "type" : "string",
+            "format" : "int64"
+          }
+        }
+      },
+      "CoursObjectCollection" : {
+        "id" : "CoursObjectCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "CoursObject"
+            }
           }
         }
       },
@@ -126,13 +159,8 @@
           "twitterHashTag" : {
             "type" : "string"
           },
-          "year" : {
-            "type" : "string",
-            "format" : "int64"
-          },
-          "cours" : {
-            "type" : "string",
-            "format" : "int64"
+          "coursObject" : {
+            "$ref" : "CoursObject"
           },
           "sex" : {
             "type" : "string",
@@ -158,12 +186,9 @@
       }
     },
     "methods" : {
-      "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans" : {
-        "request" : {
-          "$ref" : "CoursBean"
-        },
+      "com.km2j.server.api.AnimeInfoApi.getCoursObjects" : {
         "response" : {
-          "$ref" : "AnimeInfoBeanCollection"
+          "$ref" : "CoursObjectCollection"
         }
       },
       "com.km2j.server.api.AnimeInfoApi.storeFromExternalAnimeInfo" : {
@@ -174,6 +199,14 @@
         }
       },
       "com.km2j.server.api.AnimeInfoApi.updateCurrentAnimeInfo" : {
+      },
+      "com.km2j.server.api.AnimeInfoApi.getAnimeInfoBeans" : {
+        "request" : {
+          "$ref" : "CoursObject"
+        },
+        "response" : {
+          "$ref" : "AnimeInfoBeanCollection"
+        }
       }
     }
   }

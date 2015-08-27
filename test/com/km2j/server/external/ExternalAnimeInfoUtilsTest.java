@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import com.km2j.server.Utils;
+import com.km2j.shared.CoursObject;
 
 public class ExternalAnimeInfoUtilsTest {
   private static Logger logger = Logger.getLogger(ExternalAnimeInfoUtilsTest.class.getName());

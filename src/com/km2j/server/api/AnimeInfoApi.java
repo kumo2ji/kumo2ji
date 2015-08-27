@@ -15,12 +15,12 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.response.InternalServerErrorException;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.km2j.server.datastore.AnimeEntityInfo;
+import com.km2j.server.datastore.CoursEntityInfo;
 import com.km2j.server.datastore.DatastoreUtils;
 import com.km2j.server.external.AnimeBaseObject;
-import com.km2j.server.external.CoursObject;
 import com.km2j.server.external.ExternalAnimeInfoUtils;
 import com.km2j.shared.AnimeInfoBean;
-import com.km2j.shared.CoursBean;
+import com.km2j.shared.CoursObject;
 
 @Api
 public class AnimeInfoApi {
@@ -31,6 +31,7 @@ public class AnimeInfoApi {
     try {
       final List<AnimeBaseObject> list = new ArrayList<AnimeBaseObject>();
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
+      DatastoreUtils.putCoursObjects(coursMap.values());
       for (final CoursObject coursObject : coursMap.values()) {
         final String year = String.valueOf(coursObject.getYear());
         final String cours = String.valueOf(coursObject.getCours());
@@ -47,6 +48,7 @@ public class AnimeInfoApi {
     try {
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
       final Collection<CoursObject> coursObjects = coursMap.values();
+      DatastoreUtils.putCoursObjects(coursObjects);
       final CoursObject current = Collections.max(coursObjects, new Comparator<CoursObject>() {
         @Override
         public int compare(final CoursObject o1, final CoursObject o2) {
@@ -70,8 +72,17 @@ public class AnimeInfoApi {
   }
 
   @ApiMethod
-  public Collection<AnimeInfoBean> getAnimeInfoBeans(final CoursBean coursBean) {
-    return null;
+  public Collection<AnimeInfoBean> getAnimeInfoBeans(final CoursObject coursObject) {
+    final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeBaseObjects(coursObject);
+    return CollectionUtils.collect(preparedQuery.asIterable(),
+        animeEntityInfo.getEntityToAnimeInfoBeanTransformer());
+  }
 
+  @ApiMethod
+  public Collection<CoursObject> getCoursObjects() {
+    final CoursEntityInfo entityInfo = new CoursEntityInfo();
+    final PreparedQuery preparedQuery = DatastoreUtils.queryCoursObject();
+    return CollectionUtils.collect(preparedQuery.asIterable(),
+        entityInfo.getEntityToCoursObjectTransformer());
   }
 }

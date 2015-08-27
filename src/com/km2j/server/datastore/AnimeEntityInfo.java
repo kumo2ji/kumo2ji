@@ -3,14 +3,16 @@ package com.km2j.server.datastore;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.collections4.Transformer;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.km2j.server.external.AnimeBaseObject;
-import com.km2j.server.external.CoursObject;
 import com.km2j.shared.AnimeInfoBean;
+import com.km2j.shared.CoursObject;
 
 public class AnimeEntityInfo {
   public static final String KIND_NAME = "AnimeBaseObject";
@@ -19,21 +21,18 @@ public class AnimeEntityInfo {
   public static final String PUBLIC_URL_PROPERTY_NAME = "publicUrl";
   public static final String TWITTER_ACCOUNT_PROPERTY_NAME = "twitterAccount";
   public static final String TWITTER_HASH_TAG_PROPERTY_NAME = "twitterHashTag";
-  public static final String YEAR_PROPERTY_NAME = "year";
-  public static final String COURS_PROPERTY_NAME = "coursId";
+  public static final String COURS_KEY_PROPERTY_NAME = "coursKey";
   public static final String SEQUAL_PROPERTY_NAME = "sequel";
   public static final String SEX_PROPERTY_NAME = "sex";
 
-  public Transformer<AnimeBaseObject, Entity> getAnimeBaseObjectToEntityTransformer(
-      final Map<String, CoursObject> coursMap) {
+  public Transformer<AnimeBaseObject, Entity> getAnimeBaseObjectToEntityTransformer() {
     return new Transformer<AnimeBaseObject, Entity>() {
       @Override
       public Entity transform(final AnimeBaseObject input) {
         final Entity entity = new Entity(KIND_NAME);
         entity.setProperty(TITLE_PROPERTY_NAME, input.getTitle());
-        final CoursObject coursObject = coursMap.get(String.valueOf(input.getCours_id()));
-        entity.setProperty(YEAR_PROPERTY_NAME, coursObject.getYear());
-        entity.setProperty(COURS_PROPERTY_NAME, coursObject.getCours());
+        final Key key = KeyFactory.createKey(CoursEntityInfo.KIND_NAME, input.getCours_id());
+        entity.setProperty(COURS_KEY_PROPERTY_NAME, key);
         entity.setProperty(PUBLIC_URL_PROPERTY_NAME, input.getPublic_url());
         entity.setProperty(SEQUAL_PROPERTY_NAME, input.getSequel());
         entity.setProperty(SEX_PROPERTY_NAME, input.getSex());
@@ -48,6 +47,8 @@ public class AnimeEntityInfo {
   }
 
   public Transformer<Entity, AnimeInfoBean> getEntityToAnimeInfoBeanTransformer() {
+    final CoursEntityInfo coursInfo = new CoursEntityInfo();
+    final Transformer<Entity, CoursObject> transformer = coursInfo.getEntityToCoursObjectTransformer();
     return new Transformer<Entity, AnimeInfoBean>() {
       @SuppressWarnings("unchecked")
       @Override
@@ -59,8 +60,13 @@ public class AnimeEntityInfo {
         bean.setPublicUrl((String) input.getProperty(PUBLIC_URL_PROPERTY_NAME));
         bean.setTwitterAccount((String) input.getProperty(TWITTER_ACCOUNT_PROPERTY_NAME));
         bean.setTwitterHashTag((String) input.getProperty(TWITTER_HASH_TAG_PROPERTY_NAME));
-        bean.setYear((long) input.getProperty(YEAR_PROPERTY_NAME));
-        bean.setCours((long) input.getProperty(COURS_PROPERTY_NAME));
+        try {
+          final Key key = (Key) input.getProperty(COURS_KEY_PROPERTY_NAME);
+          final Entity coursEntity = DatastoreUtils.queryCoursObject(key);
+          bean.setCoursObject(transformer.transform(coursEntity));
+        } catch (final EntityNotFoundException e) {
+          e.printStackTrace();
+        }
         bean.setSequel((long) input.getProperty(SEQUAL_PROPERTY_NAME));
         bean.setSex((long) input.getProperty(SEX_PROPERTY_NAME));
         return bean;

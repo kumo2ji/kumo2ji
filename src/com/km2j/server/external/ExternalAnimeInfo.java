@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.km2j.server.JsonUtils;
+import com.km2j.shared.CoursObject;
 import com.km2j.shared.Func;
 
 public class ExternalAnimeInfo {

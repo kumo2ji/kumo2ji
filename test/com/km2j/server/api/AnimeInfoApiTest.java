@@ -7,13 +7,14 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.logging.Logger;
+import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
@@ -21,8 +22,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.google.api.server.spi.response.InternalServerErrorException;
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -30,13 +29,12 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.km2j.server.datastore.AnimeEntityInfo;
 import com.km2j.server.datastore.DatastoreUtils;
-import com.km2j.server.external.CoursObject;
 import com.km2j.server.external.ExternalAnimeInfoUtils;
 import com.km2j.shared.AnimeInfoBean;
+import com.km2j.shared.CoursObject;
 
 public class AnimeInfoApiTest {
-  private static final Logger logger = Logger.getLogger(AnimeInfoApiTest.class.getName());
-  private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  // private static final Logger logger = Logger.getLogger(AnimeInfoApiTest.class.getName());
   private static final AnimeInfoApi api = new AnimeInfoApi();
   private static final AnimeEntityInfo animeEntityInfo = new AnimeEntityInfo();
 
@@ -66,16 +64,10 @@ public class AnimeInfoApiTest {
       final Transformer<Entity, AnimeInfoBean> transformer =
           animeEntityInfo.getEntityToAnimeInfoBeanTransformer();
       final AnimeInfoBean bean = transformer.transform(entity);
-      assertTrue(2000 < bean.getYear() && bean.getYear() < 3000);
-      assertTrue(0 < bean.getCours() && bean.getCours() < 5);
+      final CoursObject coursObject = bean.getCoursObject();
+      assertTrue(2000 < coursObject.getYear() && coursObject.getYear() < 3000);
+      assertTrue(0 < coursObject.getCours() && coursObject.getCours() < 5);
       assertThat(bean.getId(), is(entity.getKey().getId()));
-      try {
-        final URL url = new URL(bean.getPublicUrl());
-        final InputStream stream = url.openStream();
-        stream.close();
-      } catch (final IOException e) {
-        logger.info(e.getMessage());
-      }
       assertTrue(StringUtils.isNotEmpty(bean.getTitle()));
       assertTrue(StringUtils.isNotEmpty(bean.getTwitterAccount()));
       assertTrue(StringUtils.isNotEmpty(bean.getTwitterHashTag()));
@@ -95,8 +87,15 @@ public class AnimeInfoApiTest {
       });
       final PreparedQuery pQuery = DatastoreUtils.queryAnimeBaseObjects();
       assertThat(pQuery.countEntities(FetchOptions.Builder.withDefaults()), not(0));
-      for (final Entity iterable_element : pQuery.asIterable()) {
-
+      final Transformer<Entity, AnimeInfoBean> transformer =
+          animeEntityInfo.getEntityToAnimeInfoBeanTransformer();
+      for (final Entity entity : pQuery.asIterable()) {
+        final AnimeInfoBean bean = transformer.transform(entity);
+        final CoursObject coursObject = bean.getCoursObject();
+        assertThat(coursObject, is(current));
+        assertTrue(StringUtils.isNotEmpty(bean.getTitle()));
+        assertTrue(StringUtils.isNotEmpty(bean.getTwitterAccount()));
+        assertTrue(StringUtils.isNotEmpty(bean.getTwitterHashTag()));
       }
     } catch (final InternalServerErrorException | IOException e) {
       fail(e.getMessage());
@@ -105,12 +104,91 @@ public class AnimeInfoApiTest {
 
   @Test
   public void testGetAllAnimeInfoBeans() {
-    fail("Not yet implemented");
+    try {
+      api.updateCurrentAnimeInfo();
+    } catch (final InternalServerErrorException e) {
+      fail(e.getMessage());
+    }
+    final Collection<AnimeInfoBean> beans = api.getAllAnimeInfoBeans();
+    assertTrue(CollectionUtils.isNotEmpty(beans));
+    for (final AnimeInfoBean bean : beans) {
+      assertTrue(StringUtils.isNotEmpty(bean.getTitle()));
+      assertTrue(StringUtils.isNotEmpty(bean.getTwitterAccount()));
+      assertTrue(StringUtils.isNotEmpty(bean.getTwitterHashTag()));
+      final CoursObject coursObject = bean.getCoursObject();
+      assertTrue(2000 < coursObject.getYear() && coursObject.getYear() < 3000);
+      assertTrue(0 < coursObject.getCours() && coursObject.getCours() < 5);
+    }
   }
 
   @Test
   public void testGetAnimeInfoBeans() {
-    fail("Not yet implemented");
+    try {
+      api.storeFromExternalAnimeInfo();
+      final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
+      for (final CoursObject coursObject : coursMap.values()) {
+        final Collection<AnimeInfoBean> animeInfoBeans = api.getAnimeInfoBeans(coursObject);
+        assertTrue(CollectionUtils.isNotEmpty(animeInfoBeans));
+        for (final AnimeInfoBean bean : animeInfoBeans) {
+          assertTrue(StringUtils.isNotEmpty(bean.getTitle()));
+          assertTrue(StringUtils.isNotEmpty(bean.getTwitterAccount()));
+          assertTrue(StringUtils.isNotEmpty(bean.getTwitterHashTag()));
+          final CoursObject storedCoursObject = bean.getCoursObject();
+          assertThat(storedCoursObject, is(coursObject));
+        }
+      }
+    } catch (final InternalServerErrorException | IOException e) {
+      fail(e.getMessage());
+    }
   }
 
+  @Test
+  public void testGetAnimeInfoBeansForYear() {
+    try {
+      api.storeFromExternalAnimeInfo();
+      final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
+      final Collection<Long> years =
+          CollectionUtils.collect(coursMap.values(), new Transformer<CoursObject, Long>() {
+            @Override
+            public Long transform(final CoursObject arg0) {
+              return arg0.getYear();
+            }
+          });
+      final Set<Long> yearSet = new HashSet<Long>(years);
+      assertTrue(CollectionUtils.isNotEmpty(yearSet));
+      for (final Long year : yearSet) {
+        final CoursObject coursObject = new CoursObject();
+        coursObject.setYear(year);
+        coursObject.setCours(-1);
+        final Collection<AnimeInfoBean> animeInfoBeans = api.getAnimeInfoBeans(coursObject);
+        assertTrue(CollectionUtils.isNotEmpty(animeInfoBeans));
+        for (final AnimeInfoBean bean : animeInfoBeans) {
+          assertTrue(StringUtils.isNotEmpty(bean.getTitle()));
+          assertTrue(StringUtils.isNotEmpty(bean.getTwitterAccount()));
+          assertTrue(StringUtils.isNotEmpty(bean.getTwitterHashTag()));
+          final CoursObject storedCoursObject = bean.getCoursObject();
+          assertThat(storedCoursObject.getYear(), is(year));
+          assertTrue(0 < storedCoursObject.getCours() && storedCoursObject.getCours() < 5);
+        }
+      }
+    } catch (final InternalServerErrorException | IOException e) {
+      fail(e.getMessage());
+    }
+  }
+
+  @Test
+  public void testGetCoursObjects() {
+    try {
+      api.storeFromExternalAnimeInfo();
+      final Collection<CoursObject> coursObjects = api.getCoursObjects();
+      assertTrue(CollectionUtils.isNotEmpty(coursObjects));
+      for (final CoursObject coursObject : coursObjects) {
+        assertTrue(0 < coursObject.getId());
+        assertTrue(2000 < coursObject.getYear() && coursObject.getYear() < 3000);
+        assertTrue(0 < coursObject.getCours() && coursObject.getCours() < 5);
+      }
+    } catch (final InternalServerErrorException e) {
+      fail(e.getMessage());
+    }
+  }
 }
