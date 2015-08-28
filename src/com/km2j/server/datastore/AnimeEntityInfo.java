@@ -1,10 +1,14 @@
 package com.km2j.server.datastore;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
@@ -36,8 +40,15 @@ public class AnimeEntityInfo {
         entity.setProperty(PUBLIC_URL_PROPERTY_NAME, input.getPublic_url());
         entity.setProperty(SEQUAL_PROPERTY_NAME, input.getSequel());
         entity.setProperty(SEX_PROPERTY_NAME, input.getSex());
-        final List<String> shortTitles = Arrays.asList(input.getTitle_short1(),
+        final List<String> shortTitleList = Arrays.asList(input.getTitle_short1(),
             input.getTitle_short2(), input.getTitle_short3());
+        final Collection<String> shortTitles =
+            CollectionUtils.select(shortTitleList, new Predicate<String>() {
+          @Override
+          public boolean evaluate(final String arg0) {
+            return StringUtils.isNotEmpty(arg0);
+          }
+        });
         entity.setProperty(SHORT_TITLES_PROPERTY_NAME, shortTitles);
         entity.setProperty(TWITTER_ACCOUNT_PROPERTY_NAME, input.getTwitter_account());
         entity.setProperty(TWITTER_HASH_TAG_PROPERTY_NAME, input.getTwitter_hash_tag());
@@ -48,7 +59,8 @@ public class AnimeEntityInfo {
 
   public Transformer<Entity, AnimeInfoBean> getEntityToAnimeInfoBeanTransformer() {
     final CoursEntityInfo coursInfo = new CoursEntityInfo();
-    final Transformer<Entity, CoursObject> transformer = coursInfo.getEntityToCoursObjectTransformer();
+    final Transformer<Entity, CoursObject> transformer =
+        coursInfo.getEntityToCoursObjectTransformer();
     return new Transformer<Entity, AnimeInfoBean>() {
       @SuppressWarnings("unchecked")
       @Override
@@ -56,7 +68,12 @@ public class AnimeEntityInfo {
         final AnimeInfoBean bean = new AnimeInfoBean();
         bean.setId(input.getKey().getId());
         bean.setTitle((String) input.getProperty(TITLE_PROPERTY_NAME));
-        bean.setShortTitles((Collection<String>) input.getProperty(SHORT_TITLES_PROPERTY_NAME));
+        Collection<String> shortTitles =
+            (Collection<String>) input.getProperty(SHORT_TITLES_PROPERTY_NAME);
+        if (shortTitles == null) {
+          shortTitles = new ArrayList<String>();
+        }
+        bean.setShortTitles(shortTitles);
         bean.setPublicUrl((String) input.getProperty(PUBLIC_URL_PROPERTY_NAME));
         bean.setTwitterAccount((String) input.getProperty(TWITTER_ACCOUNT_PROPERTY_NAME));
         bean.setTwitterHashTag((String) input.getProperty(TWITTER_HASH_TAG_PROPERTY_NAME));

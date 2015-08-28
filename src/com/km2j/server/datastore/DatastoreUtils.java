@@ -12,6 +12,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
@@ -27,6 +28,28 @@ public class DatastoreUtils {
   private static final CoursEntityInfo coursEntityInfo = new CoursEntityInfo();
 
   private DatastoreUtils() {}
+
+  public static void deleteAnimeInfo() {
+    delete(AnimeEntityInfo.KIND_NAME);
+  }
+
+  public static void deleteCoursObject() {
+    delete(CoursEntityInfo.KIND_NAME);
+  }
+
+  private static void delete(final String kindName) {
+    final Query query = new Query(kindName);
+    query.setKeysOnly();
+    final PreparedQuery pQuery = datastore.prepare(query);
+    final Collection<Key> keys =
+        CollectionUtils.collect(pQuery.asIterable(), new Transformer<Entity, Key>() {
+          @Override
+          public Key transform(final Entity arg0) {
+            return arg0.getKey();
+          }
+        });
+    datastore.delete(keys);
+  }
 
   public static List<Key> putAnimeBaseObjects(final Collection<AnimeBaseObject> baseObjects,
       final Map<String, CoursObject> coursMap) {
@@ -44,20 +67,44 @@ public class DatastoreUtils {
     return datastore.prepare(query);
   }
 
-  public static PreparedQuery queryAnimeBaseObjects(final CoursObject coursObject) {
+  public static PreparedQuery queryAnimeBaseObjectsWithId(final long id) {
     final Query query = new Query(AnimeEntityInfo.KIND_NAME);
-    query.setFilter(createFilter(coursObject));
+    query.setFilter(createFilterWithId(id));
     return datastore.prepare(query);
   }
 
-  private static Filter createFilter(final CoursObject coursObject) {
-    final Query coursQuery = queryCoursObjectForYear(coursObject.getYear());
-    if (0 < coursObject.getCours()) {
-      final Query coursQueryForCours = queryCoursObjectForCours(coursObject.getCours());
-      final Filter coursFilter =
-          CompositeFilterOperator.and(coursQuery.getFilter(), coursQueryForCours.getFilter());
-      coursQuery.setFilter(coursFilter);
-    }
+  public static PreparedQuery queryAnimeBaseObjects(final long year) {
+    final Query query = new Query(AnimeEntityInfo.KIND_NAME);
+    query.setFilter(createFilter(year));
+    return datastore.prepare(query);
+  }
+
+  public static PreparedQuery queryAnimeBaseObjects(final long year, final long cours) {
+    final Query query = new Query(AnimeEntityInfo.KIND_NAME);
+    query.setFilter(createFilter(year, cours));
+    return datastore.prepare(query);
+  }
+
+  private static Filter createFilterWithId(final long id) {
+    final Key key = KeyFactory.createKey(CoursEntityInfo.KIND_NAME, id);
+    return new FilterPredicate(AnimeEntityInfo.COURS_KEY_PROPERTY_NAME, FilterOperator.EQUAL, key);
+  }
+
+  private static Filter createFilter(final long year) {
+    final Query coursQuery = queryCoursObjectForYear(year);
+    return createFilter(coursQuery);
+  }
+
+  private static Filter createFilter(final long year, final long cours) {
+    final Query coursQuery = queryCoursObjectForYear(year);
+    final Query coursQueryForCours = queryCoursObjectForCours(cours);
+    final Filter coursFilter =
+        CompositeFilterOperator.and(coursQuery.getFilter(), coursQueryForCours.getFilter());
+    coursQuery.setFilter(coursFilter);
+    return createFilter(coursQuery);
+  }
+
+  private static Filter createFilter(final Query coursQuery) {
     coursQuery.setKeysOnly();
     final PreparedQuery coursPQuery = datastore.prepare(coursQuery);
     final Collection<Filter> filters =

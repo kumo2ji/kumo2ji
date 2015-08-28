@@ -9,11 +9,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.ApiMethod.HttpMethod;
+import com.google.api.server.spi.response.CollectionResponse;
+import com.google.api.server.spi.response.CollectionResponse.Builder;
 import com.google.api.server.spi.response.InternalServerErrorException;
+import com.google.appengine.api.datastore.Cursor;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.QueryResultList;
 import com.km2j.server.datastore.AnimeEntityInfo;
 import com.km2j.server.datastore.CoursEntityInfo;
 import com.km2j.server.datastore.DatastoreUtils;
@@ -22,33 +31,59 @@ import com.km2j.server.external.ExternalAnimeInfoUtils;
 import com.km2j.shared.AnimeInfoBean;
 import com.km2j.shared.CoursObject;
 
-@Api
+@Api(name = "animeInfo")
 public class AnimeInfoApi {
+  // private static final Logger logger = Logger.getLogger(AnimeInfoApi.class.getName());
   private static final AnimeEntityInfo animeEntityInfo = new AnimeEntityInfo();
 
-  @ApiMethod
-  public void storeFromExternalAnimeInfo() throws InternalServerErrorException {
+  @ApiMethod(name = "auth.delete.anime.all", path = "delete/anime/all", httpMethod = HttpMethod.GET,
+      scopes = {ApiConstants.EMAIL_SCOPE}, clientIds = {ApiConstants.WEB_CLIENT_ID})
+  public BooleanResponse deleteAnimeInfo() {
+    DatastoreUtils.deleteAnimeInfo();
+    return new BooleanResponse(true);
+  }
+
+  @ApiMethod(name = "auth.delete.cours.all", path = "delete/cours/all", httpMethod = HttpMethod.GET,
+      scopes = {ApiConstants.EMAIL_SCOPE}, clientIds = {ApiConstants.WEB_CLIENT_ID})
+  public BooleanResponse deleteCoursObject() {
+    DatastoreUtils.deleteCoursObject();
+    return new BooleanResponse(true);
+  }
+
+  @ApiMethod(name = "connect.external.put.all", path = "connect/all", httpMethod = HttpMethod.GET)
+  public BooleanResponse connectExternalAndPutAll() throws InternalServerErrorException {
     try {
-      final List<AnimeBaseObject> list = new ArrayList<AnimeBaseObject>();
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
-      DatastoreUtils.putCoursObjects(coursMap.values());
+      final List<Key> coursKeys = DatastoreUtils.putCoursObjects(coursMap.values());
+      if (CollectionUtils.isEmpty(coursKeys)) {
+        return new BooleanResponse(false, "failed to store coursObject");
+      }
+      final List<AnimeBaseObject> list = new ArrayList<AnimeBaseObject>();
       for (final CoursObject coursObject : coursMap.values()) {
         final String year = String.valueOf(coursObject.getYear());
         final String cours = String.valueOf(coursObject.getCours());
         list.addAll(ExternalAnimeInfoUtils.requestAnimeBaseObjects(year, cours));
       }
-      DatastoreUtils.putAnimeBaseObjects(list, coursMap);
+      final List<Key> animeKeys = DatastoreUtils.putAnimeBaseObjects(list, coursMap);
+      if (CollectionUtils.isEmpty(animeKeys)) {
+        return new BooleanResponse(false, "failed to store animeBaseObject");
+      }
     } catch (final IOException e) {
       throw new InternalServerErrorException(e);
     }
+    return new BooleanResponse(true);
   }
 
-  @ApiMethod
-  public void updateCurrentAnimeInfo() throws InternalServerErrorException {
+  @ApiMethod(name = "connect.external.put.current", path = "connect/current",
+      httpMethod = HttpMethod.GET)
+  public BooleanResponse connectExternalAndPutCurrent() throws InternalServerErrorException {
     try {
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
       final Collection<CoursObject> coursObjects = coursMap.values();
-      DatastoreUtils.putCoursObjects(coursObjects);
+      final List<Key> coursKeys = DatastoreUtils.putCoursObjects(coursObjects);
+      if (CollectionUtils.isEmpty(coursKeys)) {
+        return new BooleanResponse(false, "failed to store coursObject");
+      }
       final CoursObject current = Collections.max(coursObjects, new Comparator<CoursObject>() {
         @Override
         public int compare(final CoursObject o1, final CoursObject o2) {
@@ -57,28 +92,69 @@ public class AnimeInfoApi {
       });
       final String year = String.valueOf(current.getYear());
       final String cours = String.valueOf(current.getCours());
-      DatastoreUtils.putAnimeBaseObjects(
+      final List<Key> animeKeys = DatastoreUtils.putAnimeBaseObjects(
           ExternalAnimeInfoUtils.requestAnimeBaseObjects(year, cours), coursMap);
+      if (CollectionUtils.isEmpty(animeKeys)) {
+        return new BooleanResponse(false, "failed to store animeBaseObject");
+      }
     } catch (final IOException e) {
       throw new InternalServerErrorException(e);
     }
+    return new BooleanResponse(true);
   }
 
-  @ApiMethod(path = "all")
-  public Collection<AnimeInfoBean> getAllAnimeInfoBeans() {
-    final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeBaseObjects();
-    return CollectionUtils.collect(preparedQuery.asIterable(),
-        animeEntityInfo.getEntityToAnimeInfoBeanTransformer());
+  @ApiMethod(path = "get/anime", name = "get.anime", httpMethod = HttpMethod.POST)
+  public CollectionResponse<AnimeInfoBean> getAnimeInfoBeans(final AnimeInfoRequestBean request) {
+    final PreparedQuery preparedQuery = queryAnimeInfo(request.getCoursObject());
+    final FetchOptions options = createFetchOptions(request.getLimit(), request.getCursor());
+    final QueryResultList<Entity> entityList = preparedQuery.asQueryResultList(options);
+    final Collection<AnimeInfoBean> beans =
+        CollectionUtils.collect(entityList, animeEntityInfo.getEntityToAnimeInfoBeanTransformer());
+    final Builder<AnimeInfoBean> builder = CollectionResponse.<AnimeInfoBean>builder();
+    builder.setItems(beans);
+    final Cursor cursor = entityList.getCursor();
+    if (cursor != null) {
+      builder.setNextPageToken(cursor.toWebSafeString());
+    }
+    return builder.build();
   }
 
-  @ApiMethod
-  public Collection<AnimeInfoBean> getAnimeInfoBeans(final CoursObject coursObject) {
-    final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeBaseObjects(coursObject);
-    return CollectionUtils.collect(preparedQuery.asIterable(),
-        animeEntityInfo.getEntityToAnimeInfoBeanTransformer());
+  private FetchOptions createFetchOptions(final int limit, final String cursorString) {
+    final FetchOptions options = FetchOptions.Builder.withDefaults();
+    if (limit > 0) {
+      options.limit(limit);
+    } else {
+      options.limit(100);
+    }
+    if (!StringUtils.isEmpty(cursorString)) {
+      final Cursor cursor = Cursor.fromWebSafeString(cursorString);
+      options.startCursor(cursor);
+    }
+    return options;
   }
 
-  @ApiMethod
+  private PreparedQuery queryAnimeInfo(final CoursObject coursObject) {
+    PreparedQuery preparedQuery = null;
+    if (coursObject == null) {
+      preparedQuery = DatastoreUtils.queryAnimeBaseObjects();
+    } else {
+      if (coursObject.getId() > 0) {
+        preparedQuery = DatastoreUtils.queryAnimeBaseObjectsWithId(coursObject.getId());
+      } else {
+        if (coursObject.getYear() > 2000) {
+          if (coursObject.getCours() > 0) {
+            preparedQuery =
+                DatastoreUtils.queryAnimeBaseObjects(coursObject.getYear(), coursObject.getCours());
+          } else {
+            preparedQuery = DatastoreUtils.queryAnimeBaseObjects(coursObject.getYear());
+          }
+        }
+      }
+    }
+    return preparedQuery;
+  }
+
+  @ApiMethod(path = "get/cours/all", name = "get.cours.all")
   public Collection<CoursObject> getCoursObjects() {
     final CoursEntityInfo entityInfo = new CoursEntityInfo();
     final PreparedQuery preparedQuery = DatastoreUtils.queryCoursObject();

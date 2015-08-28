@@ -2,6 +2,7 @@ package com.km2j.server;
 
 import java.io.Reader;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -12,7 +13,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gwt.dev.util.collect.HashMap;
 import com.km2j.shared.Func;
 
 public class JsonUtils {

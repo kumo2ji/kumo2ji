@@ -15,5 +15,10 @@
 	<classpathentry kind="lib" path="lib/appengine-testing/appengine-api-stubs-1.9.25.jar"/>
 	<classpathentry kind="lib" path="lib/appengine-testing/appengine-testing-1.9.25.jar"/>
 	<classpathentry kind="lib" path="lib/appengine-testing/appengine-tools-api.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.4/commons-lang3-3.4.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/kumo2ji/lib/commons-lang3-3.4/commons-lang3-3.4-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

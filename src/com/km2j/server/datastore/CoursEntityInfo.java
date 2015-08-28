@@ -8,9 +8,9 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.km2j.shared.CoursObject;
 
 public class CoursEntityInfo {
-  public static String KIND_NAME = "CoursObject";
-  public static String YEAR_PROPERTY_NAME = "year";
-  public static String COURS_PROPERTY_NAME = "cours";
+  public static final String KIND_NAME = "CoursObject";
+  public static final String YEAR_PROPERTY_NAME = "year";
+  public static final String COURS_PROPERTY_NAME = "cours";
 
   public Transformer<CoursObject, Entity> getCoursObjectToEntityTransformer() {
     return new Transformer<CoursObject, Entity>() {
