@@ -177,3 +177,1125 @@ Compiling...
    Compilation completed in 0.00 seconds
 Removing invalidated units
 Finding entry point classes
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 2750 units from cache.
+Compiling...
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   50% complete (ETR: 4 seconds)
+   60% complete (ETR: 4 seconds)
+   70% complete (ETR: 3 seconds)
+   80% complete (ETR: 2 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 11.20 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.04 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.05 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243157672.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243157672.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243157672_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243159597.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243159597.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243159597_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.04 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243507786.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243507786.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243507786_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243543107.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243543107.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243543107_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243543178.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243543178.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243543178_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243856531.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243856531.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243856531_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.google.gwt.user.client.ui.FormPanel.IFrameTemplate
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.google.gwt.user.client.ui.FormPanel.IFrameTemplate
+         Generating method body for get()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243872690.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243872690.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243872690_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243872764.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243872764.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243872764_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243892521.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243892521.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.09 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243892521_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243900443.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243900443.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243900443_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243900499.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243900499.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243900499_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2748 cached/archived units.  Used 2748 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.02 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243922659.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243922659.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243922659_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243923004.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243923004.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243923004_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2750 cached/archived units.  Used 2750 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.00 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243951834.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243951834.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243951834_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243952146.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243952146.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.05 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243952146_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2750 cached/archived units.  Used 2750 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.00 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243971460.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243971460.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243971460_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243971743.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243971743.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441243971743_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244074757.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244074757.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244074757_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244083896.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244083896.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244083896_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244083942.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244083942.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244083942_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244269195.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244269195.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244269195_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '2' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244276924_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2750 cached/archived units.  Used 2750 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.00 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244287041.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244287041.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244287041_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244287334.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244287334.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244287334_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244290359.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244290359.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244290359_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244290397.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244290397.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244290397_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244310305.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244310305.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244310305_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2750 cached/archived units.  Used 2750 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.00 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244331131.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244331131.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244331131_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244331401.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244331401.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244331401_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2750 cached/archived units.  Used 2750 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.00 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244440964.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244440964.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244440964_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244441273.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244441273.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244441273_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244524460.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244524460.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441244524460_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.14 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257530466.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257530466.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257530466_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.03 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 0 cached/archived units.  Used 0 / 2750 units from cache.
+Compiling...
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   80% complete (ETR: 1 seconds)
+   90% complete (ETR: 1 seconds)
+   100% complete (ETR: 0 seconds)
+   Compilation completed in 7.83 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257554772.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257554772.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257554772_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257555114.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257555114.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257555114_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257581848.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257581848.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257581848_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '2' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257590505_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '2' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441257602731_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.16 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441258695603.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441258695603.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.02 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441258695603_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.04 seconds
+      Removing invalidated units
+Public resources found in...
+Translatable source found in...
+Found 2749 cached/archived units.  Used 2749 / 2750 units from cache.
+Compiling...
+   Compilation completed in 0.03 seconds
+Validating units:
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/AnimeInfoServiceTest.java'
+      Line 17: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+   Errors in 'file:/C:/Users/develop/Documents/eclipse/workspace/kumo2ji/test/com/km2j/client/Kumo2jiTest.java'
+      Line 7: No source code is available for type com.google.gwt.junit.client.GWTTestCase; did you forget to inherit a required module?
+Removing invalidated units
+Finding entry point classes
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking generator com.google.gwt.i18n.rebind.LocaleInfoGenerator
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for notANumber()
+         Generating method body for currencyPattern()
+         Generating method body for decimalPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for defCurrencyCode()
+         Generating method body for exponentialSymbol()
+         Generating method body for globalCurrencyPattern()
+         Generating method body for groupingSeparator()
+         Generating method body for infinity()
+         Generating method body for minusSign()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for monetarySeparator()
+         Generating method body for percent()
+         Generating method body for percentPattern()
+         Generating method body for perMill()
+         Generating method body for plusSign()
+         Generating method body for scientificPattern()
+         Generating method body for simpleCurrencyPattern()
+         Generating method body for zeroDigit()
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.06 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266819647.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266819647.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.00 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266819647_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266820094.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266820094.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266820094_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266916381.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266916381.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266916381_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite.MainCompositeUiBinder
+   Adding '3' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266927979.Template
+   Invoking generator com.google.gwt.safehtml.rebind.SafeHtmlTemplatesGenerator
+      Constructing interface com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266927979.Template
+         Generating method body for html1()
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units
+Rebinding com.km2j.client.MainComposite_MainCompositeUiBinderImpl_designTime1441266927979_GenBundle
+   Adding '1' new generated units
+      Compiling...
+         Compilation completed in 0.01 seconds
+      Removing invalidated units

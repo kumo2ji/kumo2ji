@@ -20,14 +20,14 @@ import com.km2j.shared.GetAnimeInfoRequest;
 
 public class AnimeInfoServiceImpl extends RemoteServiceServlet implements AnimeInfoService {
   private static final long serialVersionUID = 1L;
-  private final LocalServiceTestHelper helper =
-      new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
   private Environment environment;
   private static final AnimeInfoApi api = new AnimeInfoApi();
 
   private void setUpForTest() {
     if (ApiProxy.getCurrentEnvironment() == null) {
       if (environment == null) {
+        final LocalServiceTestHelper helper =
+            new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
         helper.setUp();
         environment = ApiProxy.getCurrentEnvironment();
       } else {

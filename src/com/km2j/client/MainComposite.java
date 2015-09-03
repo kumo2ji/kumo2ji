@@ -1,19 +1,23 @@
 package com.km2j.client;
 
+import java.util.Collection;
+
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.km2j.shared.AnimeInfoBean;
+import com.km2j.shared.CollectionResponse;
+import com.km2j.shared.CoursObject;
 
-public class MainComposite extends Composite implements HasText {
+public class MainComposite extends Composite {
 
   private static MainCompositeUiBinder uiBinder = GWT.create(MainCompositeUiBinder.class);
+  @UiField
+  VerticalPanel verticalPanel;
 
   interface MainCompositeUiBinder extends UiBinder<Widget, MainComposite> {
   }
@@ -22,25 +26,19 @@ public class MainComposite extends Composite implements HasText {
     initWidget(uiBinder.createAndBindUi(this));
   }
 
-  @UiField
-  Button button;
-
-  public MainComposite(String firstName) {
-    initWidget(uiBinder.createAndBindUi(this));
-    button.setText(firstName);
+  public boolean addCoursObjects(final Collection<CoursObject> coursObjects) {
+    for (final CoursObject coursObject : coursObjects) {
+      verticalPanel.add(new Label(coursObject.toString()));
+    }
+    return true;
   }
 
-  @UiHandler("button")
-  void onClick(ClickEvent e) {
-    Window.alert("Hello!");
-  }
-
-  public void setText(String text) {
-    button.setText(text);
-  }
-
-  public String getText() {
-    return button.getText();
+  public boolean addAnimeInfos(final CollectionResponse<AnimeInfoBean> animeInfoResponse) {
+    final Collection<AnimeInfoBean> beans = animeInfoResponse.getItems();
+    for (final AnimeInfoBean bean : beans) {
+      verticalPanel.add(new Label(bean.getTitle()));
+    }
+    return true;
   }
 
 }
