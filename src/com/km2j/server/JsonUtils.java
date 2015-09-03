@@ -13,7 +13,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.km2j.shared.Func;
 
 public class JsonUtils {
   private static final Gson gson = new Gson();
@@ -31,10 +30,10 @@ public class JsonUtils {
     return map;
   }
 
-  public static <T> Func<Reader, Map<String, T>> getFuncForMap(final Class<T> classOfT) {
-    return new Func<Reader, Map<String, T>>() {
+  public static <T> Transformer<Reader, Map<String, T>> getFuncForMap(final Class<T> classOfT) {
+    return new Transformer<Reader, Map<String, T>>() {
       @Override
-      public Map<String, T> apply(final Reader arg) {
+      public Map<String, T> transform(final Reader arg) {
         return toMapFromJson(arg, classOfT);
       }
     };
@@ -56,10 +55,11 @@ public class JsonUtils {
     };
   }
 
-  public static <T> Func<Reader, Collection<T>> getFuncForCollection(final Class<T> classOfT) {
-    return new Func<Reader, Collection<T>>() {
+  public static <T> Transformer<Reader, Collection<T>> getFuncForCollection(
+      final Class<T> classOfT) {
+    return new Transformer<Reader, Collection<T>>() {
       @Override
-      public Collection<T> apply(final Reader arg) {
+      public Collection<T> transform(final Reader arg) {
         return toCollectionFromJson(arg, classOfT);
       }
     };

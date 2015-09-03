@@ -49,7 +49,7 @@ public class DatastoreUtilsTest {
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
       final List<Key> keyList = DatastoreUtils.putAnimeBaseObjects(baseList, coursMap);
       assertTrue(!keyList.isEmpty());
-      final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeBaseObjects();
+      final PreparedQuery preparedQuery = DatastoreUtils.queryAnimeInfoBeans();
       assertThat(baseList.size(),
           is(preparedQuery.countEntities(FetchOptions.Builder.withDefaults())));
       assertTrue(Utils.equals(preparedQuery.asIterable(), baseList,

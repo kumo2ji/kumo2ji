@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee                http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
   <!-- Servlets -->
+  
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.km2j.server.GreetingServiceImpl</servlet-class>
+    <servlet-name>AnimeInfoService</servlet-name>
+    <servlet-class>com.km2j.server.AnimeInfoServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/kumo2ji/greet</url-pattern>
+    <servlet-name>AnimeInfoService</servlet-name>
+    <url-pattern>/kumo2ji/animeInfo</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>Kumo2ji.html</welcome-file>
+    <welcome-file>main.html</welcome-file>
   </welcome-file-list>
 
   <servlet>

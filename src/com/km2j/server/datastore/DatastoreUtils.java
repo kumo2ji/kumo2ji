@@ -1,11 +1,15 @@
 package com.km2j.server.datastore;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -20,6 +24,7 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.km2j.server.external.AnimeBaseObject;
+import com.km2j.shared.AnimeInfoBean;
 import com.km2j.shared.CoursObject;
 
 public class DatastoreUtils {
@@ -51,9 +56,40 @@ public class DatastoreUtils {
     datastore.delete(keys);
   }
 
+  public static void deleteAnimeInfos(final Collection<Long> keyIds) {
+    delete(AnimeEntityInfo.KIND_NAME, keyIds);
+  }
+
+  private static void delete(final String kind, final Collection<Long> keyIds) {
+    final Collection<Key> keys = CollectionUtils.collect(keyIds, new Transformer<Long, Key>() {
+      @Override
+      public Key transform(final Long arg0) {
+        return KeyFactory.createKey(kind, arg0);
+      }
+    });
+    datastore.delete(keys);
+  }
+
   public static List<Key> putAnimeBaseObjects(final Collection<AnimeBaseObject> baseObjects,
       final Map<String, CoursObject> coursMap) {
-    final Collection<Entity> entities = toEntitiesFromAnimeBaseObjects(baseObjects);
+    final List<Entity> entitieList = queryAnimeInfoBeans(baseObjects, coursMap);
+    final Collection<AnimeInfoBean> beans =
+        CollectionUtils.collect(entitieList, animeEntityInfo.getEntityToAnimeInfoBeanTransformer());
+    final Collection<AnimeBaseObject> selected =
+        CollectionUtils.select(baseObjects, new Predicate<AnimeBaseObject>() {
+          @Override
+          public boolean evaluate(final AnimeBaseObject baseObject) {
+            final CoursObject coursObject = coursMap.get(String.valueOf(baseObject.getCours_id()));
+            return !CollectionUtils.exists(beans, new Predicate<AnimeInfoBean>() {
+              @Override
+              public boolean evaluate(final AnimeInfoBean bean) {
+                return StringUtils.equals(baseObject.getTitle(), bean.getTitle())
+                    && coursObject.equals(bean.getCoursObject());
+              }
+            });
+          }
+        });
+    final Collection<Entity> entities = toEntitiesFromAnimeBaseObjects(selected);
     return datastore.put(entities);
   }
 
@@ -62,27 +98,82 @@ public class DatastoreUtils {
     return datastore.put(entities);
   }
 
-  public static PreparedQuery queryAnimeBaseObjects() {
+  public static List<Key> putAnimeInfoBeans(final Collection<AnimeInfoBean> beans) {
+    final Collection<Entity> entities = toEntitiesFromAnimeInfoBeans(beans);
+    return datastore.put(entities);
+  }
+
+  public static PreparedQuery queryAnimeInfoBeans() {
     final Query query = new Query(AnimeEntityInfo.KIND_NAME);
+    query.addSort(AnimeEntityInfo.COURS_KEY_PROPERTY_NAME)
+        .addSort(AnimeEntityInfo.TITLE_PROPERTY_NAME);
     return datastore.prepare(query);
+  }
+
+  public static Map<Key, Entity> queryAnimeInfoBean(final Collection<Key> keys) {
+    return datastore.get(keys);
   }
 
   public static PreparedQuery queryAnimeBaseObjectsWithId(final long id) {
     final Query query = new Query(AnimeEntityInfo.KIND_NAME);
     query.setFilter(createFilterWithId(id));
+    query.addSort(AnimeEntityInfo.TITLE_PROPERTY_NAME);
     return datastore.prepare(query);
   }
 
-  public static PreparedQuery queryAnimeBaseObjects(final long year) {
+  public static PreparedQuery queryAnimeInfoBeans(final long year) {
     final Query query = new Query(AnimeEntityInfo.KIND_NAME);
     query.setFilter(createFilter(year));
+    query.addSort(AnimeEntityInfo.COURS_KEY_PROPERTY_NAME)
+        .addSort(AnimeEntityInfo.TITLE_PROPERTY_NAME);
     return datastore.prepare(query);
   }
 
-  public static PreparedQuery queryAnimeBaseObjects(final long year, final long cours) {
+  public static PreparedQuery queryAnimeInfoBeans(final long year, final long cours) {
     final Query query = new Query(AnimeEntityInfo.KIND_NAME);
     query.setFilter(createFilter(year, cours));
+    query.addSort(AnimeEntityInfo.TITLE_PROPERTY_NAME);
     return datastore.prepare(query);
+  }
+
+  private static List<Entity> queryAnimeInfoBeans(
+      final Collection<AnimeBaseObject> animeBaseObjects, final Map<String, CoursObject> coursMap) {
+    final Collection<Filter> filters =
+        CollectionUtils.collect(animeBaseObjects, new Transformer<AnimeBaseObject, Filter>() {
+          @Override
+          public Filter transform(final AnimeBaseObject arg0) {
+            final Filter titleFilter = new FilterPredicate(AnimeEntityInfo.TITLE_PROPERTY_NAME,
+                FilterOperator.EQUAL, arg0.getTitle());
+            final CoursObject coursObject = coursMap.get(String.valueOf(arg0.getCours_id()));
+            return CompositeFilterOperator.and(titleFilter,
+                createFilter(coursObject.getYear(), coursObject.getCours()));
+          }
+        });
+    return queryWithSplitFilters(filters, 30, new Transformer<Collection<Filter>, PreparedQuery>() {
+      @Override
+      public PreparedQuery transform(final Collection<Filter> arg0) {
+        final Filter filter = CompositeFilterOperator.or(arg0);
+        final Query query = new Query(AnimeEntityInfo.KIND_NAME);
+        query.setFilter(filter);
+        return datastore.prepare(query);
+      }
+    });
+  }
+
+  private static List<Entity> queryWithSplitFilters(final Collection<Filter> filters,
+      final int count, final Transformer<Collection<Filter>, PreparedQuery> transformer) {
+    final List<Entity> entities = new ArrayList<Entity>();
+    final int loop = (int) Math.ceil((double) filters.size() / count);
+    final Iterator<Filter> iterator = filters.iterator();
+    for (int i = 0; i < loop; i++) {
+      final List<Filter> filterList = new ArrayList<Filter>();
+      for (int j = 0; j < count && iterator.hasNext(); j++) {
+        filterList.add(iterator.next());
+      }
+      final PreparedQuery pQuery = transformer.transform(filterList);
+      CollectionUtils.addAll(entities, pQuery.asIterable());
+    }
+    return entities;
   }
 
   private static Filter createFilterWithId(final long id) {
@@ -106,6 +197,8 @@ public class DatastoreUtils {
 
   private static Filter createFilter(final Query coursQuery) {
     coursQuery.setKeysOnly();
+    coursQuery.addSort(CoursEntityInfo.YEAR_PROPERTY_NAME)
+        .addSort(CoursEntityInfo.COURS_PROPERTY_NAME);
     final PreparedQuery coursPQuery = datastore.prepare(coursQuery);
     final Collection<Filter> filters =
         CollectionUtils.collect(coursPQuery.asIterable(), new Transformer<Entity, Filter>() {
@@ -122,12 +215,21 @@ public class DatastoreUtils {
     }
   }
 
-  public static Entity queryCoursObject(final Key key) throws EntityNotFoundException {
+  public static Entity getEntity(final Key key) throws EntityNotFoundException {
     return datastore.get(key);
+  }
+
+  public static Key queryCoursObject(final long year, final long cours) {
+    final Filter filter = createFilter(year, cours);
+    final Query query = new Query(CoursEntityInfo.KIND_NAME);
+    query.setFilter(filter).setKeysOnly();
+    final PreparedQuery pQuery = datastore.prepare(query);
+    return pQuery.asSingleEntity().getKey();
   }
 
   public static PreparedQuery queryCoursObject() {
     final Query query = new Query(CoursEntityInfo.KIND_NAME);
+    query.addSort(CoursEntityInfo.YEAR_PROPERTY_NAME).addSort(CoursEntityInfo.COURS_PROPERTY_NAME);
     return datastore.prepare(query);
   }
 
@@ -151,6 +253,11 @@ public class DatastoreUtils {
       final Collection<AnimeBaseObject> animeBaseObjects) {
     return CollectionUtils.collect(animeBaseObjects,
         animeEntityInfo.getAnimeBaseObjectToEntityTransformer());
+  }
+
+  private static Collection<Entity> toEntitiesFromAnimeInfoBeans(
+      final Collection<AnimeInfoBean> beans) {
+    return CollectionUtils.collect(beans, animeEntityInfo.getAnimeInfoBeanToEntityTransformer());
   }
 
   private static Collection<Entity> toEntitiesFromCoursObjects(

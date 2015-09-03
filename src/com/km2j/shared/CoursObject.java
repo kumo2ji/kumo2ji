@@ -8,15 +8,9 @@ public final class CoursObject implements Serializable {
   private long year;
   private long cours;
 
-  public CoursObject() {
-    super();
-  }
-
-
   public long getId() {
     return id;
   }
-
 
   public void setId(final long id) {
     this.id = id;

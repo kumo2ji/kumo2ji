@@ -2,11 +2,13 @@ package com.km2j.server.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,12 +17,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.Predicate;
 import org.apache.commons.collections4.Transformer;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.InternalServerErrorException;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
@@ -32,6 +36,7 @@ import com.km2j.server.datastore.DatastoreUtils;
 import com.km2j.server.external.ExternalAnimeInfoUtils;
 import com.km2j.shared.AnimeInfoBean;
 import com.km2j.shared.CoursObject;
+import com.km2j.shared.GetAnimeInfoRequest;
 
 public class AnimeInfoApiTest {
   // private static final Logger logger = Logger.getLogger(AnimeInfoApiTest.class.getName());
@@ -52,16 +57,38 @@ public class AnimeInfoApiTest {
   }
 
   @Test
-  public void testDeleteAnimeInfo() {
+  public void testDeleteAllAnimeInfo() {
     try {
       final BooleanResponse connectResponse = api.connectExternalAndPutCurrent();
       assertTrue(connectResponse.getValue());
       assertTrue(
-          CollectionUtils.isNotEmpty(api.getAnimeInfoBeans(new AnimeInfoRequestBean()).getItems()));
-      final BooleanResponse deleteResponse = api.deleteAnimeInfo();
+          CollectionUtils.isNotEmpty(api.getAnimeInfoBeans(new GetAnimeInfoRequest()).getItems()));
+      final BooleanResponse deleteResponse = api.deleteAllAnimeInfo();
       assertTrue(deleteResponse.getValue());
       assertTrue(
-          CollectionUtils.isEmpty(api.getAnimeInfoBeans(new AnimeInfoRequestBean()).getItems()));
+          CollectionUtils.isEmpty(api.getAnimeInfoBeans(new GetAnimeInfoRequest()).getItems()));
+    } catch (final InternalServerErrorException e) {
+      fail(e.getMessage());
+    }
+  }
+
+  @Test
+  public void testDeleteAnimeInfo() {
+    try {
+      api.connectExternalAndPutCurrent();
+      final GetAnimeInfoRequest request = new GetAnimeInfoRequest();
+      Collection<AnimeInfoBean> beans = api.getAnimeInfoBeans(request).getItems();
+      final AnimeInfoBean bean = beans.iterator().next();
+      final IdRequest idRequest = new IdRequest();
+      idRequest.setIds(Arrays.asList(bean.getId()));
+      api.deleteAnimeInfo(idRequest);
+      beans = api.getAnimeInfoBeans(request).getItems();
+      assertFalse(CollectionUtils.exists(beans, new Predicate<AnimeInfoBean>() {
+        @Override
+        public boolean evaluate(final AnimeInfoBean arg0) {
+          return arg0.equals(bean);
+        }
+      }));
     } catch (final InternalServerErrorException e) {
       fail(e.getMessage());
     }
@@ -88,7 +115,7 @@ public class AnimeInfoApiTest {
     } catch (final InternalServerErrorException e) {
       fail(e.getMessage());
     }
-    final PreparedQuery pQuery = DatastoreUtils.queryAnimeBaseObjects();
+    final PreparedQuery pQuery = DatastoreUtils.queryAnimeInfoBeans();
     assertTrue(pQuery.countEntities(FetchOptions.Builder.withDefaults()) > 0);
     for (final Entity entity : pQuery.asIterable()) {
       final Transformer<Entity, AnimeInfoBean> transformer =
@@ -118,8 +145,9 @@ public class AnimeInfoApiTest {
           return (int) (o1.getId() - o2.getId());
         }
       });
-      final PreparedQuery pQuery = DatastoreUtils.queryAnimeBaseObjects();
-      assertThat(pQuery.countEntities(FetchOptions.Builder.withDefaults()), not(0));
+      PreparedQuery pQuery = DatastoreUtils.queryAnimeInfoBeans();
+      final int count = pQuery.countEntities(FetchOptions.Builder.withDefaults());
+      assertThat(count, not(0));
       final Transformer<Entity, AnimeInfoBean> transformer =
           animeEntityInfo.getEntityToAnimeInfoBeanTransformer();
       for (final Entity entity : pQuery.asIterable()) {
@@ -133,6 +161,9 @@ public class AnimeInfoApiTest {
           assertTrue(StringUtils.isNotEmpty(shortTitle));
         }
       }
+      api.connectExternalAndPutCurrent();
+      pQuery = DatastoreUtils.queryAnimeInfoBeans();
+      assertThat(pQuery.countEntities(FetchOptions.Builder.withDefaults()), is(count));
     } catch (final InternalServerErrorException | IOException e) {
       fail(e.getMessage());
     }
@@ -146,7 +177,7 @@ public class AnimeInfoApiTest {
       fail(e.getMessage());
     }
     final Collection<AnimeInfoBean> beans =
-        api.getAnimeInfoBeans(new AnimeInfoRequestBean()).getItems();
+        api.getAnimeInfoBeans(new GetAnimeInfoRequest()).getItems();
     assertTrue(CollectionUtils.isNotEmpty(beans));
     for (final AnimeInfoBean bean : beans) {
       assertTrue(StringUtils.isNotEmpty(bean.getTitle()));
@@ -167,7 +198,7 @@ public class AnimeInfoApiTest {
       api.connectExternalAndPutAll();
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
       for (final CoursObject coursObject : coursMap.values()) {
-        final AnimeInfoRequestBean request = new AnimeInfoRequestBean();
+        final GetAnimeInfoRequest request = new GetAnimeInfoRequest();
         final CoursObject requestCoursObject = new CoursObject();
         requestCoursObject.setYear(coursObject.getYear());
         requestCoursObject.setCours(coursObject.getCours());
@@ -205,7 +236,7 @@ public class AnimeInfoApiTest {
       final Set<Long> yearSet = new HashSet<Long>(years);
       assertTrue(CollectionUtils.isNotEmpty(yearSet));
       for (final Long year : yearSet) {
-        final AnimeInfoRequestBean request = new AnimeInfoRequestBean();
+        final GetAnimeInfoRequest request = new GetAnimeInfoRequest();
         final CoursObject requestCoursObject = new CoursObject();
         requestCoursObject.setYear(year);
         request.setCoursObject(requestCoursObject);
@@ -234,7 +265,7 @@ public class AnimeInfoApiTest {
       api.connectExternalAndPutAll();
       final Map<String, CoursObject> coursMap = ExternalAnimeInfoUtils.requestCoursObjectMap();
       for (final CoursObject coursObject : coursMap.values()) {
-        final AnimeInfoRequestBean request = new AnimeInfoRequestBean();
+        final GetAnimeInfoRequest request = new GetAnimeInfoRequest();
         final CoursObject requestCoursObject = new CoursObject();
         requestCoursObject.setId(coursObject.getId());
         request.setCoursObject(requestCoursObject);
@@ -270,5 +301,52 @@ public class AnimeInfoApiTest {
     } catch (final InternalServerErrorException e) {
       fail(e.getMessage());
     }
+  }
+
+  @Test
+  public void testPutAnimeInfoBeans() {
+    try {
+      api.connectExternalAndPutCurrent();
+      final AnimeInfoBean animeBean = new AnimeInfoBean();
+      animeBean.setTitle("test title");
+      final Collection<CoursObject> coursObjects = api.getCoursObjects();
+      final CoursObject current = coursObjects.iterator().next();
+      animeBean.setCoursObject(current);
+      final PostAnimeInfoRequest request = new PostAnimeInfoRequest();
+      request.setBeans(Arrays.asList(animeBean));
+      final CollectionResponse<AnimeInfoBean> response = api.putAnimeInfoBeans(request);
+      Collection<AnimeInfoBean> beans = response.getItems();
+      final AnimeInfoBean putBean = CollectionUtils.find(beans, new Predicate<AnimeInfoBean>() {
+        @Override
+        public boolean evaluate(final AnimeInfoBean arg0) {
+          return StringUtils.equals(arg0.getTitle(), animeBean.getTitle());
+        }
+      });
+      assertThat(putBean.getTitle(), is(animeBean.getTitle()));
+      assertThat(putBean.getCoursObject(), is(animeBean.getCoursObject()));
+
+      putBean.setTitle("test title2");
+      request.setBeans(Arrays.asList(putBean));
+      beans = api.putAnimeInfoBeans(request).getItems();
+      assertTrue(CollectionUtils.isNotEmpty(beans));
+      final GetAnimeInfoRequest getRequest = new GetAnimeInfoRequest();
+      getRequest.setCoursObject(current);
+      beans = api.getAnimeInfoBeans(getRequest).getItems();
+      assertTrue(CollectionUtils.exists(beans, new Predicate<AnimeInfoBean>() {
+        @Override
+        public boolean evaluate(final AnimeInfoBean arg0) {
+          return StringUtils.equals(arg0.getTitle(), putBean.getTitle());
+        }
+      }));
+      assertFalse(CollectionUtils.exists(beans, new Predicate<AnimeInfoBean>() {
+        @Override
+        public boolean evaluate(final AnimeInfoBean arg0) {
+          return StringUtils.equals(arg0.getTitle(), animeBean.getTitle());
+        }
+      }));
+    } catch (final InternalServerErrorException e) {
+      fail(e.getMessage());
+    }
+
   }
 }

@@ -8,8 +8,9 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Map;
 
+import org.apache.commons.collections4.Transformer;
+
 import com.km2j.server.Utils;
-import com.km2j.shared.Func;
 
 public class ExternalServerUtils {
   private ExternalServerUtils() {}
@@ -20,16 +21,16 @@ public class ExternalServerUtils {
   }
 
   public static <T> Map<String, T> requestForMap(final String urlString,
-      final Func<Reader, Map<String, T>> convertFunc) throws IOException {
+      final Transformer<Reader, Map<String, T>> convertFunc) throws IOException {
     final InputStream inputStream = openStream(urlString);
     final InputStreamReader reader = Utils.toInputStreamReader(inputStream);
-    return convertFunc.apply(reader);
+    return convertFunc.transform(reader);
   }
 
   public static <T> Collection<T> requestForCollection(final String urlString,
-      final Func<Reader, Collection<T>> convertFunc) throws IOException {
+      final Transformer<Reader, Collection<T>> convertFunc) throws IOException {
     final InputStream inputStream = openStream(urlString);
     final InputStreamReader reader = Utils.toInputStreamReader(inputStream);
-    return convertFunc.apply(reader);
+    return convertFunc.transform(reader);
   }
 }

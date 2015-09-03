@@ -5,7 +5,6 @@ import java.util.Collection;
 
 public class AnimeInfoBean implements Serializable {
   private static final long serialVersionUID = 1L;
-
   private long id;
   private String title;
   private Collection<String> shortTitles;

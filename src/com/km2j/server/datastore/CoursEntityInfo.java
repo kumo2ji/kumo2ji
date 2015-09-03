@@ -3,6 +3,7 @@ package com.km2j.server.datastore;
 import org.apache.commons.collections4.Transformer;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.km2j.shared.CoursObject;
@@ -38,7 +39,27 @@ public class CoursEntityInfo {
     };
   }
 
+  public Transformer<Long, CoursObject> getIdToCoursObjectTransformer() {
+    return new Transformer<Long, CoursObject>() {
+      @Override
+      public CoursObject transform(final Long arg0) {
+        final Key key = KeyFactory.createKey(KIND_NAME, arg0);
+        try {
+          final Entity entity = DatastoreUtils.getEntity(key);
+          return getEntityToCoursObjectTransformer().transform(entity);
+        } catch (final EntityNotFoundException e) {
+          e.printStackTrace();
+        }
+        return null;
+      }
+    };
+  }
+
   public Key createKey(final CoursObject coursObject) {
-    return KeyFactory.createKey(KIND_NAME, coursObject.getId());
+    if (coursObject.getId() > 0) {
+      return KeyFactory.createKey(KIND_NAME, coursObject.getId());
+    } else {
+      return DatastoreUtils.queryCoursObject(coursObject.getYear(), coursObject.getCours());
+    }
   }
 }

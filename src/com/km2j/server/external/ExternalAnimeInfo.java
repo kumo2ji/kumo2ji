@@ -4,9 +4,10 @@ import java.io.Reader;
 import java.util.Collection;
 import java.util.Map;
 
+import org.apache.commons.collections4.Transformer;
+
 import com.km2j.server.JsonUtils;
 import com.km2j.shared.CoursObject;
-import com.km2j.shared.Func;
 
 public class ExternalAnimeInfo {
   private static final String END_POINT = "http://api.moemoe.tokyo/anime/v1/master/";
@@ -24,11 +25,11 @@ public class ExternalAnimeInfo {
     return getBaseObjectUrlString(year) + "/" + cours;
   }
 
-  public Func<Reader, Map<String, CoursObject>> getCoursObjectMapFunc() {
+  public Transformer<Reader, Map<String, CoursObject>> getCoursObjectMapFunc() {
     return JsonUtils.getFuncForMap(CoursObject.class);
   }
 
-  public Func<Reader, Collection<AnimeBaseObject>> getAnimeBaseObjectsFunc() {
+  public Transformer<Reader, Collection<AnimeBaseObject>> getAnimeBaseObjectsFunc() {
     return JsonUtils.getFuncForCollection(AnimeBaseObject.class);
   }
 }
